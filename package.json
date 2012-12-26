@@ -1,0 +1,13 @@
+{
+  "name": "sprocket",
+  "description": "socket proxy for http web service requests",
+  "version": "0.1.0",
+  "author": "James Huston <james@jameshuston.net>",
+  "devDependencies": {
+    "better-assert": "*",
+    "should": "*",
+    "mocha": "*",
+    "expect.js": ">=0.2.0"
+  },
+  "keywords": ["socket"]
+}
