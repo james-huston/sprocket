@@ -8,7 +8,7 @@ describe("A standard connection manager", function () {
     it("should have an empty connectionArray", function () {
       var testManager = new connectionManager();
       expect(testManager.connectionArray.length).to.equal(0);
-    })
+    });
   });
 
   describe("when an item is added", function () {

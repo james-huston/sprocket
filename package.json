@@ -4,10 +4,11 @@
   "version": "0.1.0",
   "author": "James Huston <james@jameshuston.net>",
   "devDependencies": {
-    "better-assert": "*",
-    "should": "*",
     "mocha": "*",
-    "expect.js": ">=0.2.0"
+    "expect.js": ">=0.2.0",
+    "grunt-simple-mocha": "=0.2.0"
   },
-  "keywords": ["socket"]
+  "keywords": [
+    "socket"
+  ]
 }
