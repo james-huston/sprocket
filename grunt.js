@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     },
     simplemocha: {
       all: {
-        src: [ "test/unit/*.test.js" ],
+        src: [ "test/unit/**/*.test.js" ],
         options: {
           timeout: 2000,
           ignoreLeaks: false,
