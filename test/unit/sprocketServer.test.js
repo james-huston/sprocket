@@ -26,11 +26,10 @@ describe('Creating a test SprocketServer', function () {
       });
 
       it('should respond respond with the send message', function (done) {
-        server.removeListener('message', server.defaultMessageHandler);
-        server.on('message', function (msg, reply) {
+        server.defaultMessageHandler = function (msg, reply) {
           expect(msg.toString()).to.equal(testValue);
           reply(msg);
-        });
+        };
 
         var request = axon.socket('req');
 

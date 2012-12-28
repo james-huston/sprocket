@@ -53,14 +53,14 @@ describe('Using a mock echo http server', function () {
         function (done) {
           var request = axon.socket('req');
 
-          request.on('connect', function () {
-            request.send(
-              JSON.stringify(dataObject),
-              function (responseBuffer) {
-                done();
-              }
-            );
-          });
+          request.send(
+            JSON.stringify(dataObject),
+            function (responseBuffer) {
+              expect(responseBuffer.toString())
+                .to.equal(JSON.stringify(dataObject.data));
+              done();
+            }
+          );
 
           request.connect(14001);
         }
