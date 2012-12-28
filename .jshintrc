@@ -1,0 +1,24 @@
+{
+  "node": true,
+  "strict": false,
+  "unused": true,
+  "laxcomma": true,
+  "camelcase": true,
+  "indent": 2,
+  "newcap": true,
+  "quotmark": "double",
+  "unused": true,
+  "trailing": true,
+  "maxstatements": 25,
+  "maxlen": 80,
+  "proto": true,
+  "smarttabs": false,
+  "maxcomplexity": 4,
+  "globals": {
+    "describe": false,
+    "it": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "done": false
+  }
+}
