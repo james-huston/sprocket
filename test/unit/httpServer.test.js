@@ -22,6 +22,11 @@ describe("When creating a server", function () {
         });
       });
 
+      httpServer.on("error", function (err) {
+        console.log("http server error");
+        console.log(err.toString());
+      });
+
       httpServer.listen("8090");
       done();
     });
@@ -37,26 +42,30 @@ describe("When creating a server", function () {
 
       beforeEach(function (done) {
         testServer = new Sprocket.Server();
-        console.log("server running");
+
+        testServer.on("error", function (err) {
+          err = err || {};
+          console.log(err.toString);
+        });
+
         done();
       });
 
       afterEach(function (done) {
-        console.log("server shutdown");
-        testServer.shutdown(done);
+        done();
       });
 
-      describe("making a socket request to the server", function (done) {
-        console.log("testing");
-        it("should post and return", function () {
-          testServer.listen("14005", function () {
-            console.log("listening");
-          });
+      describe("making a socket request to the server", function () {
+        it("should post and return", function (done) {
 
           testServer.on("request.new", function (request) {
-            var handler = new Sprocket.HttpPostEndpointHandler(
-              request,
-              request.endpoint
+            request.data = request.data || "{}";
+            request.data = JSON.parse(request.data.toString());
+
+
+            var handler = new Sprocket.HttpPostEndpoint(
+              request.data,
+              request.data.endpoint
             );
 
             handler.on("request.completed", function (response) {
@@ -72,26 +81,32 @@ describe("When creating a server", function () {
             });
 
             handler.execute();
+          });
 
-            var testData = '{data: "blarg", endpoint: "http://localhost:8090/test"}';
+          testServer.listen("14005", function () {
+            var testData =
+              '{"data": "blarg", "endpoint": "'
+                + endpoint + '"}';
 
-            var connection = net.connect("14005", function (socket) {
-              var responseData = "";
-              socket.on("data", function (chunk) {
-                responseData += chunk.toString();
-                console.write(responseData);
-                expect(responseData).to.equal(testData);
-                done();
-              });
-
-              socket.on("error", function (err) {
-                done(err);
-              });
-
-              socket.write(testData);
+            var connection = net.connect("14005", function () {
+              console.log("duty socket connected");
             });
 
+            var responseData = "";
+            connection.on("data", function (chunk) {
+              responseData += chunk.toString();
+              expect(responseData).to.equal("blarg");
+              done();
+            });
+
+            connection.on("error", function (err) {
+              done(err);
+            });
+
+            connection.write(testData);
+
           });
+
         });
       });
     });
