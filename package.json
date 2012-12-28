@@ -6,7 +6,8 @@
   "devDependencies": {
     "mocha": "*",
     "expect.js": ">=0.2.0",
-    "grunt-simple-mocha": "=0.2.0"
+    "grunt-simple-mocha": "=0.2.0",
+    "axon": ">=0.4.6"
   },
   "keywords": [
     "socket"

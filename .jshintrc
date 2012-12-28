@@ -6,7 +6,7 @@
   "camelcase": true,
   "indent": 2,
   "newcap": true,
-  "quotmark": "double",
+  "quotmark": "single",
   "unused": true,
   "trailing": true,
   "maxstatements": 25,
@@ -14,6 +14,7 @@
   "proto": true,
   "smarttabs": false,
   "maxcomplexity": 4,
+  "white": true,
   "globals": {
     "describe": false,
     "it": false,
